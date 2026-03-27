@@ -1,70 +1,67 @@
-"use client";
-import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
-
-const faqs = [
-  {
-    q: "Is there a trial period?",
-    a: "Yes, we offer a 3-day elite pass for all new members.",
-  },
-  {
-    q: "Do you provide personal training?",
-    a: "Our Pro and Elite tiers include dedicated coaching sessions.",
-  },
-  {
-    q: "What are the gym timings?",
-    a: "We are open 24/7 for Elite members; 5AM - 11PM for others.",
-  },
-];
+'use client';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { ChevronDown } from "lucide-react";
 
 export default function FAQ() {
-  const [open, setOpen] = useState(null);
+  const [faqs, setFaqs] = useState([]);
+  const [openIndex, setOpenIndex] = useState(0);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
+  useEffect(() => {
+    const fetchFAQs = async () => {
+      try {
+        const res = await axios.get(`${apiUrl}/api/content/faqs`);
+        setFaqs(res.data);
+      } catch (err) { console.error("Error fetching FAQs", err); }
+    };
+    fetchFAQs();
+  }, [apiUrl]);
+
+  if (faqs.length === 0) return null;
 
   return (
-    <section className="py-28 px-6 bg-[#0f0f0f] text-white">
-      {/* Heading */}
-      <div className="max-w-4xl mx-auto text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-extrabold uppercase tracking-tight">
-          Frequently Asked Questions
-        </h2>
-        <p className="text-zinc-400 mt-4 text-sm md:text-base">
-          Everything you need to know before joining Titan Gym
-        </p>
-      </div>
+    <section className="py-24 bg-[#0a0a0a] text-white">
+      <div className="max-w-3xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">
+            Got <span className="text-amber-500">Questions?</span>
+          </h2>
+          <p className="text-zinc-400 mt-4 text-lg">Everything you need to know about joining XYZ.</p>
+        </div>
 
-      {/* FAQ Container */}
-      <div className="max-w-3xl mx-auto space-y-5">
-        {faqs.map((faq, i) => (
-          <div
-            key={i}
-            className="border border-zinc-800 rounded-2xl bg-gradient-to-b from-zinc-900 to-zinc-950 hover:border-yellow-500/40 transition-all duration-300"
-          >
-            {/* Question */}
-            <button
-              onClick={() => setOpen(open === i ? null : i)}
-              className="w-full p-6 flex justify-between items-center text-left"
-            >
-              <span className="font-semibold text-sm md:text-base uppercase tracking-wide">
-                {faq.q}
-              </span>
-
-              <span className="text-yellow-500">
-                {open === i ? <Minus size={20} /> : <Plus size={20} />}
-              </span>
-            </button>
-
-            {/* Answer */}
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
             <div
-              className={`overflow-hidden transition-all duration-300 ${
-                open === i ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+              key={faq._id}
+              className={`border border-white/10 rounded-2xl overflow-hidden transition-colors ${
+                openIndex === i ? "bg-[#111111]" : "hover:bg-white/5"
               }`}
             >
-              <p className="px-6 pb-6 text-zinc-400 text-sm leading-relaxed">
-                {faq.a}
-              </p>
+               <button
+                 className="w-full px-6 py-5 flex items-center justify-between text-left font-bold text-lg"
+                 onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
+               >
+                 <span>{faq.question}</span>
+                 <ChevronDown
+                   className={`w-5 h-5 text-amber-500 transition-transform duration-300 shrink-0 ${
+                     openIndex === i ? "rotate-180" : ""
+                   }`}
+                 />
+               </button>
+               
+               <div
+                 className={`overflow-hidden transition-all duration-300 ${
+                   openIndex === i ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                 }`}
+               >
+                 <p className="px-6 pb-6 text-zinc-400 leading-relaxed">
+                   {faq.answer}
+                 </p>
+               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

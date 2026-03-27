@@ -30,7 +30,7 @@ export default function ContactPage() {
       {/* Navbar */}
       <Navbar />
 
-      <div className="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
+      <div className="max-w-6xl mx-auto px-6 pt-32 pb-24 grid md:grid-cols-2 gap-16 items-center">
         {/* LEFT SIDE */}
         <div className="space-y-8">
           <h1 className="text-4xl md:text-5xl font-extrabold uppercase leading-tight">

@@ -1,10 +1,14 @@
+import Link from "next/link";
+import { useSession } from "next-auth/react";
+
 export default function MapFooter() {
+  const { data: session } = useSession();
   return (
     <section className="bg-[#0f0f0f] text-white pt-24">
       {/* Heading */}
       <div className="max-w-6xl mx-auto px-6 mb-12 text-center">
         <h2 className="text-4xl md:text-5xl font-extrabold uppercase tracking-tight">
-          Visit Our <span className="text-yellow-500">Facility</span>
+          Visit Our <span className="text-amber-500">Facility</span>
         </h2>
         <p className="text-zinc-400 mt-4 text-sm md:text-base">
           Experience the environment where transformation begins
@@ -26,8 +30,8 @@ export default function MapFooter() {
       {/* Info Cards */}
       <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-6">
         {/* Address */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-yellow-500/40 transition">
-          <h3 className="text-sm uppercase tracking-widest text-yellow-500 mb-3">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-amber-500/40 transition">
+          <h3 className="text-sm uppercase tracking-widest text-amber-500 mb-3">
             Location
           </h3>
           <p className="text-zinc-400 text-sm leading-relaxed">
@@ -38,8 +42,8 @@ export default function MapFooter() {
         </div>
 
         {/* Timings */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-yellow-500/40 transition">
-          <h3 className="text-sm uppercase tracking-widest text-yellow-500 mb-3">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-amber-500/40 transition">
+          <h3 className="text-sm uppercase tracking-widest text-amber-500 mb-3">
             Working Hours
           </h3>
           <p className="text-zinc-400 text-sm leading-relaxed">
@@ -50,9 +54,9 @@ export default function MapFooter() {
         </div>
 
         {/* CTA */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 flex flex-col justify-between hover:border-yellow-500/40 transition">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 flex flex-col justify-between hover:border-amber-500/40 transition">
           <div>
-            <h3 className="text-sm uppercase tracking-widest text-yellow-500 mb-3">
+            <h3 className="text-sm uppercase tracking-widest text-amber-500 mb-3">
               Get Started
             </h3>
             <p className="text-zinc-400 text-sm mb-4">
@@ -60,9 +64,9 @@ export default function MapFooter() {
             </p>
           </div>
 
-          <button className="mt-4 bg-yellow-500 text-black py-3 rounded-full font-bold uppercase tracking-wide hover:bg-yellow-400 transition">
-            Join Now
-          </button>
+          <Link href={session ? "/membership" : "/login"} className="cursor-pointer text-center mt-4 bg-amber-500 text-black py-3 rounded-full font-bold uppercase tracking-wide hover:bg-amber-400 transition">
+            {session ? "View Titan Plans" : "Join Now"}
+          </Link>
         </div>
       </div>
     </section>

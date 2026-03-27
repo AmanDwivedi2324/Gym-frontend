@@ -38,7 +38,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-6rem)] items-center justify-center p-4">
+    <div className="flex min-h-screen pt-24 pb-12 items-center justify-center p-4">
       <div className="w-full max-w-md bg-[#0F172A] p-8 rounded-2xl border border-slate-800 shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-700">
         <div className="flex justify-center mb-6">
           <div className="w-12 h-12 bg-emerald-600/20 text-emerald-500 rounded-xl flex items-center justify-center">

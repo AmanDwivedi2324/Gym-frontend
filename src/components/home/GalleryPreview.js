@@ -1,92 +1,55 @@
-"use client";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-
-const previewImages = [
-  {
-    url: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000",
-    span: "md:col-span-2 md:row-span-2",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1000",
-    span: "md:col-span-1 md:row-span-1",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1000",
-    span: "md:col-span-1 md:row-span-1",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=1000",
-    span: "md:col-span-2 md:row-span-1",
-  },
-];
+'use client';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { ArrowRight } from "lucide-react";
 
 export default function GalleryPreview() {
+  const [images, setImages] = useState([]);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const res = await axios.get(`${apiUrl}/api/content/gallery`);
+        // We only want a maximum of 6 images on the homepage preview.
+        setImages(res.data.slice(0, 6)); 
+      } catch (err) { console.error("Error fetching gallery:", err); }
+    };
+    fetchGallery();
+  }, [apiUrl]);
+
+  if (images.length === 0) return null;
+
   return (
-    <section className="py-28 px-6 bg-[#0a0a0a] text-white">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-14">
-          <div>
-            <h2 className="text-4xl md:text-6xl font-extrabold uppercase tracking-tight leading-none">
-              The <span className="text-yellow-500">Sanctuary</span>
-            </h2>
-            <p className="text-zinc-500 mt-3 uppercase tracking-[0.25em] text-xs font-semibold">
-              High Performance Training Zone
-            </p>
-          </div>
+    <section className="py-24 bg-[#0a0a0a] text-white overflow-hidden relative border-t border-b border-white/5">
+      <div className="max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
+        <div>
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight">
+            Inside <span className="text-amber-500">The Arena</span>
+          </h2>
+          <p className="text-zinc-400 mt-4 max-w-xl text-lg">
+            Immerse yourself in our state-of-the-art facility designed entirely for elite outcomes.
+          </p>
+        </div>
+      </div>
 
-          <Link
-            href="/gallery"
-            className="hidden md:flex items-center gap-2 text-zinc-400 hover:text-yellow-500 transition-all group"
-          >
-            <span className="text-xs font-bold uppercase tracking-widest">
-              View Full Gallery
-            </span>
-            <ArrowUpRight
-              size={18}
-              className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+      {/* Grid */}
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-1 md:gap-2 px-1 md:px-6 max-w-[1400px] mx-auto">
+        {images.map((img) => (
+          <div key={img._id} className="relative group overflow-hidden aspect-square bg-[#111]">
+            <img
+              src={img.imageBase64}
+              alt={img.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
             />
-          </Link>
-        </div>
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-5 auto-rows-[200px]">
-          {previewImages.map((img, i) => (
-            <div
-              key={i}
-              className={`relative overflow-hidden rounded-3xl border border-zinc-800 group ${img.span}`}
-            >
-              {/* Image */}
-              <img
-                src={img.url}
-                alt="Gym Interior"
-                className="w-full h-full object-cover transition-all duration-700 scale-105 group-hover:scale-125"
-              />
-
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-black/50 group-hover:bg-black/20 transition-all duration-500" />
-
-              {/* Glow Accent */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-yellow-500/20 via-transparent to-transparent transition-all duration-500" />
-
-              {/* Optional Label */}
-              <div className="absolute bottom-4 left-4 text-xs uppercase tracking-widest text-white/80 opacity-0 group-hover:opacity-100 transition">
-                Elite Zone
-              </div>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+              <h3 className="text-white font-bold text-lg uppercase tracking-wide translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                {img.title}
+              </h3>
             </div>
-          ))}
-        </div>
-
-        {/* Mobile CTA */}
-        <div className="mt-10 md:hidden text-center">
-          <Link
-            href="/gallery"
-            className="inline-block text-yellow-500 font-bold uppercase tracking-widest text-xs border border-yellow-500/40 px-6 py-3 rounded-full hover:bg-yellow-500 hover:text-black transition"
-          >
-            View Full Gallery →
-          </Link>
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

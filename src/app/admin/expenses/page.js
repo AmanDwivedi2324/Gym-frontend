@@ -140,14 +140,14 @@ export default function ExpensesPage() {
                 expenses.map((expense) => (
                   <tr key={expense._id} className="border-b border-slate-800/50 hover:bg-slate-800/20 transition-colors group">
                     <td className="px-6 py-4 font-medium text-white">{expense.title}</td>
-                    <td className="px-6 py-4 text-rose-400 font-mono font-bold">${expense.amount}</td>
+                    <td className="px-6 py-4 text-rose-400 font-mono font-bold">₹{expense.amount}</td>
                     <td className="px-6 py-4">
                       <span className="px-3 py-1 bg-slate-800 text-slate-300 rounded text-xs">{expense.category}</span>
                     </td>
                     <td className="px-6 py-4 text-slate-400">{new Date(expense.date).toLocaleDateString()}</td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button onClick={() => openModal(expense)} className="p-2 text-slate-400 hover:text-blue-400 transition-colors"><Edit2 className="w-4 h-4" /></button>
+                        <button onClick={() => openModal(expense)} className="p-2 text-slate-400 hover:text-amber-500 transition-colors"><Edit2 className="w-4 h-4" /></button>
                         <button onClick={() => handleDelete(expense._id)} className="p-2 text-slate-400 hover:text-rose-400 transition-colors"><Trash2 className="w-4 h-4" /></button>
                       </div>
                     </td>

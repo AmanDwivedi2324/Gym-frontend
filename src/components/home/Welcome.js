@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Welcome() {
   return (
     <section className="py-28 bg-[#0a0a0a] text-white">
@@ -6,7 +8,7 @@ export default function Welcome() {
         {/* Image Side */}
         <div className="relative group">
           {/* Border Accent */}
-          <div className="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-yellow-500 opacity-70" />
+          <div className="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-amber-500 opacity-70" />
 
           {/* Image */}
           <div className="overflow-hidden rounded-[2.5rem]">
@@ -18,7 +20,7 @@ export default function Welcome() {
           </div>
 
           {/* Glow Effect */}
-          <div className="absolute inset-0 bg-yellow-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition duration-700 rounded-[2.5rem]" />
+          <div className="absolute inset-0 bg-amber-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition duration-700 rounded-[2.5rem]" />
         </div>
 
         {/* Content Side */}
@@ -27,7 +29,7 @@ export default function Welcome() {
           {/* Heading */}
           <h2 className="text-4xl md:text-5xl font-extrabold uppercase leading-tight tracking-tight">
             Welcome to the <br />
-            <span className="text-yellow-500 text-5xl md:text-6xl">
+            <span className="text-amber-500 text-5xl md:text-6xl">
               Empire
             </span>
           </h2>
@@ -41,12 +43,10 @@ export default function Welcome() {
 
           {/* CTA */}
           <div className="pt-4">
-            <button className="relative text-sm font-bold uppercase tracking-[0.25em] text-yellow-500 group">
-              
+            <Link href="/gallery" className="relative cursor-pointer inline-block text-sm font-bold uppercase tracking-[0.25em] text-amber-500 group">
               Discover More
-              
-              <span className="block h-[2px] w-0 bg-yellow-500 mt-2 group-hover:w-full transition-all duration-500"></span>
-            </button>
+              <span className="block h-[2px] w-0 bg-amber-500 mt-2 group-hover:w-full transition-all duration-500"></span>
+            </Link>
           </div>
 
         </div>

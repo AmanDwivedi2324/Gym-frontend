@@ -64,13 +64,18 @@ export default function InventoryPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const submitData = { ...formData };
+      if (submitData.purchasePrice === '') {
+        delete submitData.purchasePrice;
+      }
+
       if (editingItem) {
-        await axios.put(`${apiUrl}/api/inventory/${editingItem._id}`, formData, {
+        await axios.put(`${apiUrl}/api/inventory/${editingItem._id}`, submitData, {
           headers: { Authorization: `Bearer ${session.accessToken}` }
         });
         toast.success("Item updated successfully!");
       } else {
-        await axios.post(`${apiUrl}/api/inventory/add`, formData, {
+        await axios.post(`${apiUrl}/api/inventory/add`, submitData, {
           headers: { Authorization: `Bearer ${session.accessToken}` }
         });
         toast.success("Item added successfully!");
@@ -154,7 +159,7 @@ export default function InventoryPage() {
                     <td className="px-6 py-4 text-white font-mono">{item.quantity}</td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button onClick={() => openModal(item)} className="p-2 text-slate-400 hover:text-blue-400 transition-colors"><Edit2 className="w-4 h-4" /></button>
+                        <button onClick={() => openModal(item)} className="p-2 text-slate-400 hover:text-amber-500 transition-colors"><Edit2 className="w-4 h-4" /></button>
                         <button onClick={() => handleDelete(item._id)} className="p-2 text-slate-400 hover:text-rose-400 transition-colors"><Trash2 className="w-4 h-4" /></button>
                       </div>
                     </td>

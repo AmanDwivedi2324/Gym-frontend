@@ -33,7 +33,7 @@ export default function LoginPage() {
         toast.error(res.error);
       } else {
         toast.success("Successfully logged in!");
-        router.push('/');
+        router.push('/profile');
         router.refresh();
       }
     } catch (err) {
@@ -44,10 +44,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-6rem)] items-center justify-center p-4">
+    <div className="flex min-h-screen pt-24 pb-12 items-center justify-center p-4">
       <div className="w-full max-w-md bg-[#0F172A] p-8 rounded-2xl border border-slate-800 shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-700">
         <div className="flex justify-center mb-6">
-          <div className="w-12 h-12 bg-blue-600/20 text-blue-500 rounded-xl flex items-center justify-center">
+          <div className="w-12 h-12 bg-amber-500/20 text-amber-500 rounded-xl flex items-center justify-center">
             <Dumbbell className="w-6 h-6" />
           </div>
         </div>
@@ -63,23 +63,22 @@ export default function LoginPage() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="admin@admin.com"
-              className="w-full bg-[#0B1120] border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+              placeholder="john@example.com"
+              className="w-full bg-[#0B1120] border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:ring-2 focus:ring-amber-500 transition-all outline-none"
               required
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-1.5 flex justify-between">
               Password
-              <span className="text-xs text-blue-400 font-normal">Admin? Use admin123</span>
             </label>
             <input
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="admin123"
-              className="w-full bg-[#0B1120] border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+              placeholder="••••••••"
+              className="w-full bg-[#0B1120] border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:ring-2 focus:ring-amber-500 transition-all outline-none"
               required
             />
           </div>
@@ -87,7 +86,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-4 rounded-xl transition-all shadow-lg shadow-blue-500/20 flex justify-center items-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full bg-amber-500 hover:bg-amber-400 text-black font-semibold py-3 px-4 rounded-xl transition-all shadow-lg shadow-amber-500/20 flex justify-center items-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {loading ? <Loader2 className="w-5 h-5 animate-spin"/> : (
               <>
@@ -100,7 +99,7 @@ export default function LoginPage() {
 
         <p className="text-center text-slate-400 mt-6 text-sm">
           Don't have an account?{' '}
-          <Link href="/register" className="text-blue-400 hover:text-blue-300 font-medium underline underline-offset-4 transition-colors">
+          <Link href="/register" className="text-amber-500 hover:text-amber-400 font-medium underline underline-offset-4 transition-colors">
             Register for access
           </Link>
         </p>

@@ -127,7 +127,7 @@ export default function PlansPage() {
         </div>
         <button
           onClick={() => openModal()}
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-xl font-medium transition-all shadow-lg shadow-blue-500/20 active:scale-95"
+          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-black px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-amber-500/20 active:scale-95"
         >
           <Plus className="w-5 h-5" />
           Create New Plan
@@ -153,7 +153,7 @@ export default function PlansPage() {
                 <tr>
                   <td colSpan="6" className="px-6 py-12 text-center text-slate-400">
                     <div className="flex justify-center mb-4">
-                      <div className="w-8 h-8 rounded-full border-2 border-blue-500 border-t-transparent animate-spin"></div>
+                      <div className="w-8 h-8 rounded-full border-2 border-amber-500 border-t-transparent animate-spin"></div>
                     </div>
                     Loading plans...
                   </td>
@@ -192,9 +192,9 @@ export default function PlansPage() {
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button 
+                          <button 
                           onClick={() => openModal(plan)}
-                          className="p-2 text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 rounded-lg transition-colors"
+                          className="p-2 text-slate-400 hover:text-amber-500 hover:bg-amber-500/10 rounded-lg transition-colors"
                           title="Edit"
                         >
                           <Edit2 className="w-4 h-4" />
@@ -239,7 +239,7 @@ export default function PlansPage() {
                     name="planName"
                     value={formData.planName}
                     onChange={handleInputChange}
-                    className="w-full bg-[#0B1120] border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full bg-[#0B1120] border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
                     placeholder="e.g. Monthly Standard"
                     required
                   />
@@ -277,7 +277,7 @@ export default function PlansPage() {
                     name="features"
                     value={formData.features}
                     onChange={handleInputChange}
-                    className="w-full bg-[#0B1120] border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all min-h-[100px] resize-none"
+                    className="w-full bg-[#0B1120] border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all min-h-[100px] resize-none"
                     placeholder="Gym Access, Free WiFi, Group Classes"
                   ></textarea>
                 </div>
@@ -289,7 +289,7 @@ export default function PlansPage() {
                       name="isBestValue"
                       checked={formData.isBestValue}
                       onChange={handleInputChange}
-                      className="w-5 h-5 rounded border-slate-600 text-blue-500 focus:ring-blue-500 focus:ring-offset-slate-900 bg-slate-800"
+                      className="w-5 h-5 rounded border-slate-600 text-amber-500 focus:ring-amber-500 focus:ring-offset-slate-900 bg-slate-800"
                     />
                     <div>
                       <span className="block text-sm font-medium text-white">Mark as Best Value</span>
@@ -309,7 +309,7 @@ export default function PlansPage() {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl text-sm font-medium bg-blue-600 hover:bg-blue-500 text-white transition-colors shadow-lg shadow-blue-500/20 active:scale-95 flex items-center gap-2"
+                  className="px-5 py-2.5 rounded-xl text-sm font-bold bg-amber-500 hover:bg-amber-400 text-black transition-colors shadow-lg shadow-amber-500/20 active:scale-95 flex items-center gap-2"
                 >
                   {editingPlan ? 'Update Plan' : 'Save Plan'}
                 </button>

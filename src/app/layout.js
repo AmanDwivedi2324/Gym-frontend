@@ -2,8 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import SessionWrapper from "@/components/SessionWrapper";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import LayoutWrapper from "@/components/LayoutWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,15 +17,9 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} bg-[#0f0f0f] text-white`}>
         <SessionWrapper>
           <Toaster position="top-center" />
-
-          {/* Navbar */}
-          <Navbar />
-
-          {/* Page Content */}
-          <main className="min-h-screen pt-24">{children}</main>
-
-          {/* Footer */}
-          <Footer />
+          <LayoutWrapper>
+            {children}
+          </LayoutWrapper>
         </SessionWrapper>
       </body>
     </html>

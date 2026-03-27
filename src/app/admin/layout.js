@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, ShoppingBag, Users, Layers, CircleDollarSign, LogOut, MessageSquare } from 'lucide-react';
+import { LayoutDashboard, ShoppingBag, Users, Layers, CircleDollarSign, LogOut, MessageSquare, CreditCard, Settings, AppWindow } from 'lucide-react';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
@@ -12,7 +12,10 @@ export default function AdminLayout({ children }) {
     { name: 'Members', href: '/admin/members', icon: Users },
     { name: 'Expenses', href: '/admin/expenses', icon: CircleDollarSign },
     { name: 'Inventory', href: '/admin/inventory', icon: ShoppingBag },
+    { name: 'Website Content', href: '/admin/content', icon: AppWindow },
     { name: 'Queries', href: '/admin/queries', icon: MessageSquare },
+    { name: 'Fee Tracking', href: '/admin/fees', icon: CreditCard },
+    { name: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
   return (
@@ -21,7 +24,7 @@ export default function AdminLayout({ children }) {
       <aside className="w-64 bg-[#0F172A] shadow-xl shadow-black/20 border-r border-slate-800/50 hidden md:flex flex-col z-20">
         <div className="h-20 flex items-center px-6 border-b border-slate-800/80">
           <Link href="/admin" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-shadow">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-600 to-yellow-500 flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:shadow-amber-500/40 transition-shadow">
               <Layers className="text-white w-5 h-5" />
             </div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-slate-100 to-slate-400 bg-clip-text text-transparent group-hover:text-white transition-colors">
@@ -38,14 +41,14 @@ export default function AdminLayout({ children }) {
                 href={item.href}
                 className={`flex items-center px-4 py-3 rounded-xl transition-all duration-200 group relative overflow-hidden ${
                   isActive
-                    ? 'bg-blue-600/10 text-blue-400 border border-blue-500/20'
+                    ? 'bg-amber-600/10 text-amber-400 border border-amber-500/20'
                     : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200 border border-transparent'
                 }`}
               >
                 {isActive && (
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-r-full shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-amber-500 rounded-r-full shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>
                 )}
-                <item.icon className={`h-5 w-5 mr-3 transition-colors ${isActive ? 'text-blue-400' : 'text-slate-400 group-hover:text-slate-200'}`} />
+                <item.icon className={`h-5 w-5 mr-3 transition-colors ${isActive ? 'text-amber-400' : 'text-slate-400 group-hover:text-slate-200'}`} />
                 <span className="font-medium tracking-wide text-sm">{item.name}</span>
               </Link>
             );
@@ -61,7 +64,7 @@ export default function AdminLayout({ children }) {
 
       {/* Main content backdrop + Container */}
       <main className="flex-1 overflow-x-hidden overflow-y-auto custom-scrollbar relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/10 via-slate-900/0 to-slate-900/0 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-slate-900/0 to-slate-900/0 pointer-events-none"></div>
         <div className="mx-auto max-w-7xl px-4 py-8 mt-4 sm:px-6 md:px-8 relative z-10">
           {children}
         </div>

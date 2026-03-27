@@ -30,7 +30,7 @@ export default function Services() {
         {/* Heading */}
         <div className="mb-16 max-w-2xl">
           <h2 className="text-4xl md:text-5xl font-extrabold uppercase tracking-tight leading-tight">
-            Premium <span className="text-yellow-500">Services</span>
+            Premium <span className="text-amber-500">Services</span>
           </h2>
           <p className="text-zinc-400 mt-4 text-sm md:text-base">
             Everything you need to build strength, endurance, and confidence.
@@ -45,10 +45,10 @@ export default function Services() {
               className="group relative p-6 rounded-2xl border border-zinc-800 bg-zinc-900 hover:border-yellow-500/40 transition-all duration-300"
             >
               {/* Glow Effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-b from-yellow-500/10 to-transparent rounded-2xl transition-all duration-300" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-b from-amber-500/10 to-transparent rounded-2xl transition-all duration-300" />
 
               {/* Icon */}
-              <div className="relative w-12 h-12 bg-yellow-500 text-black rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
+              <div className="relative w-12 h-12 bg-amber-500 text-black rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition">
                 {s.icon}
               </div>
 

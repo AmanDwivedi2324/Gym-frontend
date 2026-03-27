@@ -34,26 +34,26 @@ export default function OfferPopup({ offer }) {
       {/* Popup */}
       <div className="relative w-full max-w-lg rounded-[2.5rem] border border-zinc-800 bg-[#0f0f0f] overflow-hidden shadow-2xl">
         {/* Glow Accent */}
-        <div className="absolute -top-20 -left-20 w-60 h-60 bg-yellow-500/20 blur-[100px] rounded-full" />
+        <div className="absolute -top-20 -left-20 w-60 h-60 bg-amber-500/20 blur-[100px] rounded-full" />
 
         <div className="relative p-8 md:p-10">
           {/* Close */}
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-5 right-5 text-zinc-500 hover:text-white transition"
+            className="absolute top-5 right-5 text-zinc-500 hover:text-white transition cursor-pointer"
           >
             <X size={22} />
           </button>
 
           {/* Icon */}
-          <div className="w-14 h-14 bg-yellow-500 rounded-xl flex items-center justify-center text-black mb-6 shadow-lg">
+          <div className="w-14 h-14 bg-amber-500 rounded-xl flex items-center justify-center text-black mb-6 shadow-lg">
             <Zap size={26} fill="currentColor" />
           </div>
 
           {/* Heading */}
           <h2 className="text-3xl md:text-4xl font-extrabold uppercase leading-tight mb-4">
             Limited Time <br />
-            <span className="text-yellow-500">Offer</span>
+            <span className="text-amber-500">Offer</span>
           </h2>
 
           {/* Offer Content */}
@@ -74,7 +74,7 @@ export default function OfferPopup({ offer }) {
                 ₹{offer.price}
               </p>
             </div>
-            <Gift className="text-yellow-500 opacity-60" size={34} />
+            <Gift className="text-amber-500 opacity-60" size={34} />
           </div>
 
           {/* Form */}
@@ -85,12 +85,12 @@ export default function OfferPopup({ offer }) {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-5 py-3 bg-black border border-zinc-700 rounded-xl outline-none focus:border-yellow-500 transition text-sm"
+              className="w-full px-5 py-3 bg-black border border-zinc-700 rounded-xl outline-none focus:border-amber-500 transition text-sm"
             />
 
             <button
               disabled={loading}
-              className="w-full bg-yellow-500 hover:bg-yellow-400 text-black py-3 rounded-xl font-bold uppercase tracking-wide flex items-center justify-center gap-2 transition"
+              className="cursor-pointer w-full bg-amber-500 hover:bg-amber-400 text-black py-3 rounded-xl font-bold uppercase tracking-wide flex items-center justify-center gap-2 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Processing..." : "Claim Offer"}
               {!loading && (
